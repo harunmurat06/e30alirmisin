@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LUTFEN</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url('arkaplan.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #002052;
+        }
+        p {
+            font-size: 26px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .buton-container {
+            display: flex;
+            gap: 15px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        #evetButon {
+            background: linear-gradient(45deg, #4facfe, #00f2fe);
+            color: white;
+        }
+        #evetButon:hover {
+            transform: scale(1.05);
+        }
+        #hayirButon {
+            background: linear-gradient(45deg, #ff6a6a, #ff8e53);
+            color: white;
+            position: relative;
+        }
+        #hayirButon:hover {
+            transform: scale(1.05);
+        }
+        #arkaplanGif {
+            display: none;
+            position: fixed;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: auto;
+            z-index: 1;
+        }
+        #nazikYazi {
+            display: none;
+            position: fixed;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #001f3f;
+            z-index: 2;
+            white-space: nowrap;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+    <p>BANA BMW E30 ALIR MISINNNN????</p>
+    <div class="buton-container">
+        <button id="evetButon">EVET</button>
+        <button id="hayirButon">HAYIR</button>
+    </div>
+
+    <img id="arkaplanGif" src="kedi.gif" alt="Kedi Gif">
+    <p id="nazikYazi">COK NAZIKSINN</p>
+
+    <script>
+        const hayirButon = document.getElementById("hayirButon");
+        const evetButon = document.getElementById("evetButon");
+        const arkaplanGif = document.getElementById("arkaplanGif");
+        const nazikYazi = document.getElementById("nazikYazi");
+        const soruMetni = document.querySelector('p');
+        const butonContainer = document.querySelector('.buton-container');
+
+        hayirButon.addEventListener("click", () => {
+            // Butonun boyutlarını alıyoruz
+            const btnWidth = hayirButon.offsetWidth;
+            const btnHeight = hayirButon.offsetHeight;
+            
+            // Eğer placeholder eklenmemişse, ekliyoruz
+            let placeholder = document.getElementById("hayirPlaceholder");
+            if (!placeholder) {
+                placeholder = document.createElement("div");
+                placeholder.id = "hayirPlaceholder";
+                placeholder.style.width = btnWidth + "px";
+                placeholder.style.height = btnHeight + "px";
+                placeholder.style.display = "inline-block";
+                // Yer tutucuyu hayır butonunun hemen sonrasına ekliyoruz
+                hayirButon.parentNode.insertBefore(placeholder, hayirButon.nextSibling);
+            }
+            
+            // Butonu akıştan çıkarıp, rastgele konuma taşımak
+            const rastgeleX = Math.random() * (window.innerWidth - btnWidth);
+            const rastgeleY = Math.random() * (window.innerHeight - btnHeight);
+            hayirButon.style.position = "absolute";
+            hayirButon.style.left = rastgeleX + "px";
+            hayirButon.style.top = rastgeleY + "px";
+        });
+
+        evetButon.addEventListener("click", () => {
+            arkaplanGif.style.display = "block";
+            nazikYazi.style.display = "block";
+            soruMetni.style.display = "none";
+            butonContainer.style.display = "none";
+        });
+    </script>
+</body>
+</html>
